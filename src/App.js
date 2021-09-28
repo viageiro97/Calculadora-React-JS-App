@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+//####React
+import { useContext } from "react";
+
+//####Theming and Styles
+import { AppWrapper, GlobalStyles } from "./themes/GlobalStyles";
+import { ThemeProvider } from "styled-components";
+
+//####Context
+import GlobalContext from "./context/GlobalContext";
+import Header from "./components/Header";
+import KeyPad from "./components/KeyPad";
+import CalcScreen from "./components/CalcScreen";
+
 
 function App() {
+  const {theme} = useContext(GlobalContext);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme ={theme} >
+      <GlobalStyles/>
+      <AppWrapper>
+        <Header/>
+        <CalcScreen/>
+        <KeyPad/>
+      </AppWrapper>
+    </ThemeProvider>
   );
 }
 
